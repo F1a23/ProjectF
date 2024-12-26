@@ -18,20 +18,4 @@ describe("About", () => {
 
     expect(aboutElement).toBeInTheDocument();
   });
-
-  it("should have the text about", () => {
-    render(<About />);
-
-    const text = screen.queryByText(/about/i);
-
-    expect(text).toBeInTheDocument();
-  });
-
-  it("should have the image", () => {
-    render(<About />);
-
-    const image = screen.getByAltText("devimage");
-
-    expect(image).toHaveClass("userImage");
-  });
 });

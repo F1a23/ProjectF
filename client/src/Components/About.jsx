@@ -1,17 +1,20 @@
 import React from "react"; // Ensure this line is present if necessary
 
-import userImage from "../Images/user.png"; // Import a default user image
 
 const About = () => {
   return (
     <div>
-      <h1>About this project</h1>
+      <p className="h1">
+        My name is Fatima Al-Amri, I am the developer of this web app that
+        provides all the various home services that a person needs through one
+        platform. I am very happy that you are one of the users of this
+        application. I wish you a wonderful day.<br></br> Best regards.
+      </p>
 
-      <p>This project is developed by: Fatima Said Al-Amri.</p>
-
-      <p>Email: 46S1915@utas.edu.om</p>
-
-      <img src={userImage} alt="devimage" className="userImage" />
+      <h1 className="h1">
+        &copy; {new Date().getFullYear()} HOMEHERO, Salalah, Dhofar, Oman.All
+        rights reserved
+      </h1>
     </div>
   );
 };
