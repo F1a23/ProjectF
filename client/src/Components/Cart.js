@@ -128,13 +128,6 @@ const Cart = () => {
                     >
                       Delete
                     </Button>
-                    &nbsp;&nbsp;
-                    <Button
-                      onClick={() => handleUpdate(item._id)}
-                      disabled={savedItems.includes(item._id)}
-                    >
-                      Update
-                    </Button>
                   </td>
                 </tr>
               ))}
