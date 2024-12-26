@@ -35,7 +35,7 @@ const ManageUsers = () => {
   };
 
   const handleUpdate = (id) => {
-    navigate("/manageprofile/" + id);
+    navigate("/manageprofile");
   };
 
   useEffect(() => {
