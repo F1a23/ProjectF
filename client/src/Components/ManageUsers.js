@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Link, useNavigate } from "react-router-dom";
-
+import ManageProfile from "./ManageProfile";
 import { getUsers, deleteUser } from "../Features/ManageUserSlice";
 import {
   Button,
@@ -17,6 +17,7 @@ import {
   Table,
 } from "reactstrap";
 import * as ENV from "../config";
+import { updateUserProfile } from "../Features/UserSlice";
 
 const ManageUsers = () => {
   const user = useSelector((state) => state.users.user);
@@ -35,7 +36,7 @@ const ManageUsers = () => {
   };
 
   const handleUpdate = (id) => {
-    navigate("/manageprofile");
+    navigate("/manageprofile/" + id);
   };
 
   useEffect(() => {
