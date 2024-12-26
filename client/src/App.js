@@ -54,6 +54,7 @@ const App = () => {
             <Route path="/update/:prod_id" element={<UpdateProduct />}></Route>
             <Route path="/manage" element={<ManageProducts />}></Route>
             <Route path="/ListProducts" element={<ListProducts />}></Route>
+            <Route path="/manageprofile" element={<ManageProfile />}></Route>
           </Routes>
         </Row>
       </Router>
