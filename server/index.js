@@ -182,74 +182,6 @@ app.put("/likePost/:postId/", async (req, res) => {
   }
 });
 
-app.put(
-  "/updateUserProfile/:email/",
-  upload.single("profilePic"), // Middleware to handle single file upload
-  async (req, res) => {
-    const email = req.params.email;
-    const name = req.body.name;
-    const password = req.body.password;
-    const userType = req.body.userType; // Ensure userType is retrieved from the request body
-
-    try {
-      // Find the user by email in the database
-      const userToUpdate = await UserModel.findOne({ email: email });
-
-      // If the user is not found, return a 404 error
-      if (!userToUpdate) {
-        return res.status(404).json({ error: "User not found" });
-      }
-
-      // Check if a file was uploaded and get the filename
-      let profilePic = null;
-      if (req.file) {
-        profilePic = req.file.filename; // Filename of uploaded file
-        // Update profile picture if a new one was uploaded and delete the old image
-        if (userToUpdate.profilePic) {
-          const oldFilePath = path.join(
-            __dirname,
-            "uploads",
-            userToUpdate.profilePic
-          );
-          fs.unlink(oldFilePath, (err) => {
-            if (err) {
-              console.error("Error deleting file:", err);
-            } else {
-              console.log("Old file deleted successfully");
-            }
-          });
-        }
-        userToUpdate.profilePic = profilePic; // Set new profile picture path
-      } else {
-        console.log("No file uploaded");
-      }
-
-      // Update user's name if provided
-      if (name) userToUpdate.name = name;
-
-      // Update userType if provided
-      if (userType) userToUpdate.userType = userType;
-
-      // Hash the new password and update if it has changed
-      if (password && password !== userToUpdate.password) {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        userToUpdate.password = hashedPassword;
-      } else if (password) {
-        userToUpdate.password = password; // Keep the same password if unchanged
-      }
-
-      // Save the updated user information to the database
-      await userToUpdate.save();
-
-      // Send the updated user data and a success message as a response
-      res.send({ user: userToUpdate, msg: "Profile updated successfully" });
-    } catch (err) {
-      // Handle any errors during the update process
-      res.status(500).json({ error: err.message });
-    }
-  }
-);
-
 //ADMIN SIDE
 
 //GET API - getUsers
@@ -404,20 +336,6 @@ app.put(
     }
   }
 );
-//GET API - getPost
-app.get("/getUsers", async (req, res) => {
-  try {
-    // Fetch all users from the "UserModel" collection, sorted by createdAt in descending order
-    const users = await UserModel.find({}).sort({ name: 1 });
-
-    const userPost = await UserModel.countDocuments({});
-
-    res.send({ users: users, count: userPost });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "An error occurred" });
-  }
-});
 
 //Services
 

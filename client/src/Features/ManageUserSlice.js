@@ -11,13 +11,12 @@ const initialState = {
 };
 
 // getUsers
-export const getUsers = createAsyncThunk("user/getUsers", async () => {
+export const getUsers = createAsyncThunk("manageUser/getUsers", async () => {
   try {
     const response = await axios.get(`${ENV.SERVER_URL}/getUsers`);
     return response.data.users;
   } catch (error) {
     console.error(error);
-    throw error; // Pass the error to the rejected state
   }
 });
 

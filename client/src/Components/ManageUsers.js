@@ -36,7 +36,7 @@ const ManageUsers = () => {
   };
 
   const handleUpdate = (id) => {
-    navigate("/manageProfile/:id");
+    navigate("/manageprofile/" + id);
   };
 
   useEffect(() => {
@@ -96,13 +96,7 @@ const ManageUsers = () => {
                   Delete
                 </Button>
                 &nbsp;&nbsp;&nbsp;
-                <Button
-                  onClick={() => handleUpdate(user._id)}
-                  color="success"
-                  size="sm"
-                >
-                  Update
-                </Button>
+                <button onClick={() => handleUpdate(user._id)}>Update</button>
               </td>
             </tr>
           ))}
