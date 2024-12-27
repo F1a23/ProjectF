@@ -181,7 +181,7 @@ const ManageProducts = () => {
 
               {/* Number of Works */}
               <FormGroup>
-                <Label for="noWorks">Number of Works</Label>
+                <Label for="noWorks">Number of Workers</Label>
                 <input
                   className="form-control"
                   placeholder="Enter Number of Works"
